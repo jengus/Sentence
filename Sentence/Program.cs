@@ -46,6 +46,15 @@ namespace Sentence
             }
             return maxWord;
         }
+        static string TransformationLongestWord(string maxWord)
+        {
+            if ((maxWord.Length % 2) == 0) maxWord = maxWord.Substring(maxWord.Length / 2);
+            else
+            {
+                maxWord = maxWord.Replace(maxWord[maxWord.Length / 2], '*');
+            }
+            return maxWord;
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Введите текст");
@@ -61,7 +70,8 @@ namespace Sentence
             {
                 Console.WriteLine($"{word.ToLower()}");
             }
-            Console.WriteLine($"Самое длинное слово: {TheLongestWord(SeparationWords(text)).ToLower()}");
+            Console.WriteLine($"Самое длинное слово: {TheLongestWord(SeparationWords(text))}");
+            Console.WriteLine(TransformationLongestWord(text));
         }
     }
 }
