@@ -22,7 +22,7 @@ namespace Sentence
         }
         static string[] Separation(string text)
         {
-            string[] sentences = text.Split('.');
+            string[] sentences = text.Split('.','?','!');
             sentences = sentences.Where(x => x != "").ToArray();
             return sentences;
         }
@@ -66,12 +66,9 @@ namespace Sentence
                 Console.WriteLine($"{sentence.Trim()}.");
             }
             Console.WriteLine($"Уникальные слова:");
-            foreach (string word in SeparationWords(text).Distinct(StringComparer.CurrentCultureIgnoreCase))
-            {
-                Console.WriteLine($"{word.ToLower()}");
-            }
+            Console.WriteLine($"{string.Join(", ",SeparationWords(text).Distinct()).ToLower()}");
             Console.WriteLine($"Самое длинное слово: {TheLongestWord(SeparationWords(text))}");
-            Console.WriteLine(TransformationLongestWord(text));
+            Console.WriteLine(TransformationLongestWord(TheLongestWord(SeparationWords(text))));
         }
     }
 }
